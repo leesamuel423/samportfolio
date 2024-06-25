@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experience Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link lang="sass" rel="stylesheet" href="./static/styles/main.css" />
+    <link rel="icon" href="./static/img/favicon.ico" type="image/x-icon" />
+
+    <style>
+      body {
+        font-family: "Work Sans", sans-serif;
+        background-color: #eef7ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="back-heading">
+      <nav class="nav-bar">
+        <div class="nav-content">
+          <a href="/">
+            <div class="nav-logo">
+              <img src="./static/img/logo.svg" />
+            </div>
+          </a>
+        </div>
+      </nav>
+      <header>
+        <div class="menu-toggle" id="menu-toggle">
+          <div class="hamburger"></div>
+        </div>
+        <ul id="nav-menu" class="nav-menu">
+          <li><a href="/">About</a></li>
+          <li><a href="experiences">Experience</a></li>
+          <li><a href="education">Education</a></li>
+          <li><a href="hobbies">Hobbies</a></li>
+          <li><a href="locations">Map</a></li>
+        </ul>
+      </header>
+    </div>
+
+    <div class="container">
+      <h1>Experience</h1>
+      <ul id="experiences">
+        {% for experience in experiences %}
+        <li>
+          <div class="experience-header">
+            <span>{{ experience.company_name }}</span>
+            <span>{{ experience.position }}</span>
+            <span>{{ experience.dates }}</span>
+            <span>{{ experience.location }}</span>
+          </div>
+          <ul class="experience-description">
+            {% for description_line in experience.description %}
+            <li>{{ description_line }}</li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <script>
+      document.querySelectorAll(".experience-header").forEach((header) => {
+        header.addEventListener("click", function () {
+          const description = this.nextElementSibling;
+          this.classList.toggle("active");
+
+          if (this.classList.contains("active")) {
+            description.style.maxHeight = description.scrollHeight + "px";
+          } else {
+            description.style.maxHeight = 0;
+          }
+        });
+      });
+
+      document
+        .getElementById("menu-toggle")
+        .addEventListener("click", function () {
+          document.getElementById("nav-menu").classList.toggle("active");
+        });
+    </script>
+  </body>
+</html>

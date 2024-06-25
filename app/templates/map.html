@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel="icon" href="./static/img/favicon.ico" type="image/x-icon" />
+
+  </head>
+
+  <body>
+    <div class="back-heading">
+      <nav class="nav-bar">
+        <div class="nav-content">
+          <a href="/">
+            <div class="nav-logo">
+              <img src="./static/img/logo.svg" />
+            </div>
+          </a>
+        </div>
+      </nav>
+      <header>
+        <div class="menu-toggle" id="menu-toggle">
+          <div class="hamburger"></div>
+        </div>
+        <ul id="nav-menu" class="nav-menu">
+          <li><a href="/">About</a></li>
+          <li><a href="education">Education</a></li>
+          <li><a href="experiences">Experience</a></li>
+          <li><a href="hobbies">Hobbies</a></li>
+          <li><a href="locations">Map</a></li>
+        </ul>
+      </header>
+    </div>
+
+    <div class="container">
+      <h1>Places I've Lived</h1>
+
+      <div id="locations">
+        <!-- ---------- MAP ---------- -->
+        <div id="map" style="height: 500px;"></div>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script>
+        const map = L.map('map').setView([37.0902, -95.7129], 4); // Center of the map and zoom level
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        const countries = [];
+
+      {% for place in locationData %}
+
+        countries.push({
+          lat: {{ place.lat }},
+          long: {{ place.long }},
+          country: "{{ place.country }}"
+        });
+
+      {% endfor %}
+
+        countries.forEach(function(location) {
+            L.marker([location.lat, location.long]).addTo(map)
+                .bindPopup(location.country);
+        });
+
+        document
+          .getElementById("menu-toggle")
+          .addEventListener("click", function () {
+            document.getElementById("nav-menu").classList.toggle("active");
+          });
+
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

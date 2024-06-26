@@ -5,51 +5,108 @@ from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 
-# ---------- DATA ----------
-user_data = {"name": "Sam", "about" : "Software Engineer. Teacher. Runner. Professional Sleeper.", "profilepic": "./static/img/sam.jpg", "github": "link", "linkedin": "link"}
+# Enable automatic reloading of templates
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+
+# ----------> DATA <----------
+user_data = {
+    "github": "https://github.com/leesamuel423", 
+    "linkedin": "https://www.linkedin.com/in/leesamuel423/"
+}
 
 hobbies_data = [
-    {"name": "Gym", "image": "static/img/hobbies/gym.jpg"},
-    {"name": "Running", "image": "static/img/hobbies/running.jpg"},
-    {"name": "Binging KDramas", "image": "static/img/hobbies/kdrama.jpg"}
+    {
+        "name": "Dog Dad", 
+        "image": [
+            {
+                "src": "/static/assets/hobbies/agee1.png", 
+                "alt": "image of dog"
+            },
+            {
+                "src": "/static/assets/hobbies/agee2.png", 
+                "alt": "image of dog"
+            }
+        ],
+        "desc": "Dog dad to a spoiled 2 year old Goldadornamed Agee (A-G). RIP to any disposable income."
+
+    },
+    {
+        "name": "Gym", 
+        "image": [
+        ],
+        "video": [
+            {
+                "src": "/static/assets/hobbies/bench.MOV",
+                "type": "video/mp4"
+            }
+        ],
+        "desc": "Lifting heavy things...<br>PRs:<br>- Bench: 245lbs<br>- Squat: lbs<br>- Deadlift: lb",
+    },
+    {
+        "name": "Running", 
+        "image": [
+            {
+                "src": "/static/assets/hobbies/run1.png",
+                "alt": "image of two people smiling before race"
+            },
+            {
+                "src": "/static/assets/hobbies/run2.png",
+                "alt": "image of two people smiling after race"
+            },
+        ],
+        "desc": "Training for a marathon in October 2024. Bucket list item is to do an Ironman one day!"
+    },
 ]
 
 education_data = [
     {
-        "school": "School Name 1",
-        "img": "/static/img/school/school1.jpg",
+        "school": "University of Pennsylvania",
         "degree": "M.S in Computer Science",
         "year": 2025
     },
     {
-        "school": "School Name 2",
-        "img": "/static/img/school/school2.jpg",
-        "degree": "B.S in Computer Science",
+        "school": "McMaster University",
+        "degree": "B.S in Health Sciences Honours",
         "year": 2021
     }
 ]
 
 experiences_data = [
     {
-        "company_name": "XYZ",
-        "position": "Software Engineer",
-        "dates": "2023 - 2024",
-        "location": "US",
+        "company_name": "Meta & Major League Hacking",
+        "position": "Production Engineering Fellow",
+        "dates": "June 2024 - Present",
+        "location": "Toronto, ON",
         "description": [
-            "bullet point 1",
-            "bullet point 2",
+            "Engineered a dynamic web-based application utilizing Python, Flask, Jinja, MySQL, Nginx, Docker, and unittest.",
         ]
     },
     {
-        "company_name": "XYZ2",
+        "company_name": "CS Engineering",
         "position": "Software Engineer",
-        "dates": "2020 - 2021",
-        "location": "US",
+        "dates": "Jun 2023 - Jan 2024",
+        "location": "Los Angeles, CA",
         "description": [
-            "bullet point 1",
-            "bullet point 2",
+            "Developed and maintained React and Redux based public and internal applications.",
+            "Identified and resolved flaky Cypress tests by 80% through strategic network request interceptions, aliases, custom timeouts, addressing state management issues, and utilizing larger VM runners.",
+            "Leveraged Jest, Cypress, and React Testing Library for comprehensive unit and end-to-end testing of React, Redux, and Express components, ensuring test isolation and enhancing reliability in support of CI/CD.",
+            "Led TypeScript migration to ensure type safety and reinforce data consistency, reducing type errors by 21%.",
+            "Employed Docker CLI for project containerization, preflight checks before deployment, and consistent project-wide formatting and linting configurations, ensuring standardization of development across teams.",
+            "Mentored engineering teams through the Software Development Life Cycle (SDLC) of full-stack open-source applications, facilitating an AGILE/SCRUM environment to enhance workflow and ensure successful product launches."
         ]
     },
+    {
+        "company_name": "OSLabs",
+        "position": "Software Engineer",
+        "dates": "",
+        "location": "New York, NY",
+        "description": [
+            "Developed Trydent, an automated Cypress end-to-end (E2E) test generator that captures and analyzes user interactions from XPATH, streamlining the testing process and enhancing developer productivity by over 60%.",
+            "Designed and implemented the core functionality for DOM selectors and input monitoring, effectively establishing a bridge between the DOM and service workers, and utilized selector and input data in code generation and implementation of assertion mode to validate the DOM state for more reliable and efficient test code.",
+            "Utilized Sass with SMACSS principles for effective CSS preprocessing and enhanced code maintainability, using mixins to develop modular, reusable components that contributed to standardized styling and code efficiency.",
+            "Spearheaded comprehensive documentation to improve future development and engineering on-boarding."
+        ]
+    }
 ]
 
 locations_data = [
@@ -59,25 +116,25 @@ locations_data = [
     {"country": "Toronto, Ontario, Canada", "lat": 43.651070, "long": -79.347015}
 ]
 
-# ---------- ROUTES ----------
+# ----------> ROUTES <----------
 
 @app.route('/')
-def index():
-    return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"), user=user_data)
+def about():
+    return render_template('about.html', 
+                           title="Samuel Lee", 
+                           url=os.getenv("URL"), 
+                           user=user_data, 
+                           education=education_data, 
+                           experiences=experiences_data)
 
 @app.route('/hobbies')
 def hobbies():
     return render_template('hobbies.html', title="Hobbies", hobbies=hobbies_data)
 
-@app.route('/education')
-def education():
-    return render_template('education.html', title="Education", education=education_data)
-
-@app.route('/experiences')
-def experiences():
-    return render_template('experiences.html', title="Experiences", experiences=experiences_data)
-
 @app.route('/locations')
 def map_view():
     return render_template('map.html', title="Map", locationData=locations_data)
 
+
+if __name__ == '__main__':
+    app.run(debug=True)

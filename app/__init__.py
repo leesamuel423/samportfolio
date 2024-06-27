@@ -27,20 +27,14 @@ hobbies_data = [
                 "alt": "image of dog"
             }
         ],
-        "desc": "Dog dad to a spoiled 2 year old Goldadornamed Agee (A-G). RIP to any disposable income."
+        "desc": "Dog dad to a spoiled 2 year old Goldador named Agee (A-G). RIP to any disposable income."
 
     },
     {
         "name": "Gym", 
         "image": [
         ],
-        "video": [
-            {
-                "src": "/static/assets/hobbies/bench.MOV",
-                "type": "video/mp4"
-            }
-        ],
-        "desc": "Lifting heavy things...<br>PRs:<br>- Bench: 245lbs<br>- Squat: lbs<br>- Deadlift: lb",
+        "desc": "Lifting heavy things ... B: 245 / S: 325 / D: 405",
     },
     {
         "name": "Running", 
@@ -54,7 +48,7 @@ hobbies_data = [
                 "alt": "image of two people smiling after race"
             },
         ],
-        "desc": "Training for a marathon in October 2024. Bucket list item is to do an Ironman one day!"
+        "desc": "Training for a marathon in October 2024. Hoping to do an Ironman one day!"
     },
 ]
 
@@ -62,12 +56,12 @@ education_data = [
     {
         "school": "University of Pennsylvania",
         "degree": "M.S in Computer Science",
-        "year": 2025
+        "year": "2024 - 2025"
     },
     {
         "school": "McMaster University",
         "degree": "B.S in Health Sciences Honours",
-        "year": 2021
+        "year": "2017 - 2021"
     }
 ]
 
@@ -137,4 +131,4 @@ def map_view():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0")

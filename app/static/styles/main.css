@@ -1,146 +1,113 @@
 /* General Styles */
 body {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  color: #FAF9F6;
+  background-color: #333333;
   margin: 0;
   padding: 0;
-  background: #f4f4f4;
-  color: #333;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
+a {
+  color: #80CBC4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1, h2 {
+  color: #80CBC4;
+}
+
+/* Nav Bar */
 .nav-bar {
-  background: #333;
-  color: white;
-  padding: 10px 20px;
+  background-color: #333A3F;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+}
+
+.nav-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.nav-content a {
-  text-decoration: none;
-  color: white;
-}
-
 .nav-logo img {
-  height: 50px;
+  height: 40px;
 }
 
 .nav-menu {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 1rem;
   margin: 0;
   padding: 0;
 }
 
-.nav-menu li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+.nav-menu li {
+  display: inline;
 }
 
-#content {
-  padding: 20px;
-  background: white;
-  margin: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-h1 {
-  color: #333;
-  font-size: 24px;
-  padding: 20px;
-}
-
-/* Section Containers */
-.edu-container, .profile, .about, .hobby-container {
-  margin: 20px;
-  padding: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.profile-picture {
+/* Profile Section */
+.profile {
+  text-align: left;
+  padding: 2rem 0;
   display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
 }
 
 .profile-picture img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-right: 30px;
+  height: 20rem;
+  width: 20rem;
+  margin-right: 2rem;
 }
 
-
-.about h1 {
-  color: #333;
-  font-weight: 700;
+/* Education & Experience */
+.edu, .hobby, .experience-header {
+  border-bottom: 1px solid #FAF9F6;
 }
 
-.about p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #666;
+.ul {
+  margin: 0;
+  padding: 0;
 }
 
-.edu {
-  border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-}
-
-.edu h3 {
-  margin: 5px 0;
-}
-
-/* Hobbies Styles */
-.hobby {
-  margin-bottom: 20px;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.hobby h3 {
-  margin-top: 0;
-  color: #333;
-  text-align: left;
-  font-size: 1.4em;
-}
-
+/* Hobbies Section */
 .hobby-content {
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
+  padding-top: 1rem;
+}
+
+.hobby-images-videos img, .hobby-images-videos video {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 8px;
 }
 
 .hobby-images-videos {
   display: flex;
   flex-wrap: wrap;
-  justify-content: left;
-  align-items: center;
-  gap: 10px;
-  width: 50%;
+  gap: 1rem;
 }
 
-.hobby img, .hobby video {
-  width: 100%;
-  max-width: 210px;
-  height: 210px;
-  border-radius: 5px;
-  object-fit: cover;
-}
-
-@media (max-width: 600px) {
-  .hobby-content {
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-content {
     flex-direction: column;
   }
 
-  .hobby-images-videos, .hobby-description {
-    width: 100%;
-    padding-left: 0;
+  .nav-menu {
+    flex-direction: column;
+    gap: 0.5rem;
   }
+
+  .profile {
+    flex-direction: column;
+  }
+
 }

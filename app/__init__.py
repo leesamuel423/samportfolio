@@ -92,7 +92,7 @@ experiences_data = [
     {
         "company_name": "OSLabs",
         "position": "Software Engineer",
-        "dates": "",
+        "dates": "Mar 2023 - Jun 2023",
         "location": "New York, NY",
         "description": [
             "Developed Trydent, an automated Cypress end-to-end (E2E) test generator that captures and analyzes user interactions from XPATH, streamlining the testing process and enhancing developer productivity by over 60%.",

@@ -68,6 +68,11 @@ h1, h2 {
   margin-right: 2rem;
 }
 
+.prof-desc {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Education & Experience */
 .edu, .hobby, .experience-header {
   border-bottom: 1px solid #FAF9F6;

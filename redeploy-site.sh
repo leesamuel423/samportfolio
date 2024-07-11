@@ -1,5 +1,5 @@
 #!/bin/bash
-# Author: Sam
+# Author: leesamuel423
 
 # Step 1: Kill all existing tmux sessions
 tmux kill-server

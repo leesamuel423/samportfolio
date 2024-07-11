@@ -173,5 +173,20 @@ def get_time_line_post():
                 ]
             }
 
+
+@app.route('/api/timeline_post/<int:id>', methods=['DELETE'])
+def delete_time_line_post(id):
+    try:
+        post = TimelinePost.get_by_id(id)
+        post.delete_instance()
+        return {
+                'deleted': True
+                }
+    except:
+        return {
+                'deleted': False
+                }
+
+
 if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", debug=True)

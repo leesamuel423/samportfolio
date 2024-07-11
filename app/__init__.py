@@ -187,6 +187,10 @@ def delete_time_line_post(id):
                 'deleted': False
                 }
 
+@app.route('/timeline')
+def timeline():
+    return render_template('timeline.html', title="Timeline")
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

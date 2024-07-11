@@ -1,0 +1,147 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="timeline-container">
+  <h1>Timeline</h1>
+  <form id="post-form">
+    <input name="name" type="text" placeholder="Your Name" required>
+    <input name="email" type="email" placeholder="Your Email" required>
+    <textarea name="content" placeholder="What's on your mind?" required></textarea>
+    <button type="submit">Post</button>
+  </form>
+  <div id="posts-container"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script>
+
+  document.getElementById('post-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('/api/timeline_post', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (response.ok) {
+        form.reset();
+        fetchPosts();
+      } else {
+        console.error('Failed to submit post');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  });
+
+  async function getGravatarUrl(email) {
+    const trimmedEmail = email.trim().toLowerCase()
+    const hash = CryptoJS.SHA256(trimmedEmail)
+    return `https://www.gravatar.com/avatar/${hash}?s=50&d=robohash`;
+  }
+
+  async function fetchPosts() {
+    try {
+      const response = await fetch('/api/timeline_post');
+      const data = await response.json();
+      const postsContainer = document.getElementById('posts-container');
+      postsContainer.innerHTML = '';
+      for (const post of data.timeline_posts) {
+        const gravatarUrl = await getGravatarUrl(post.email);
+        const postElement = document.createElement('div');
+        postElement.className = 'post';
+        postElement.innerHTML = `
+                <div class="post-header">
+                    <img src="${gravatarUrl}" alt="Avatar" class="avatar">
+                    <div>
+                        <h3>${post.name}</h3>
+                        <small>${post.email}</small>
+                    </div>
+                </div>
+                <p>${post.content}</p>
+                <small class="post-date">${new Date(post.created_at).toLocaleString()}</small>
+            `;
+        postsContainer.appendChild(postElement);
+      }
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    }
+  }
+
+  fetchPosts();
+</script>
+
+<style>
+.timeline-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input, textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.post {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  color: black;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.post h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.post p {
+  margin: 10px 0;
+  word-wrap: break-word;
+}
+
+.post small {
+  display: block;
+  margin-top: 10px;
+  color: #777;
+}
+</style>
+{% endblock %}

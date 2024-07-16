@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, request
+from flask_assets import Environment, Bundle
 from dotenv import load_dotenv
 from peewee import *
 from playhouse.shortcuts import model_to_dict
@@ -11,6 +12,11 @@ app = Flask(__name__)
 # Enable automatic reloading of templates
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
+assets = Environment(app)
+assets.url = app.static_url_path
+
+scss = Bundle('styles/main.scss', filters='libsass', output='gen/main.css')
+assets.register('scss_all', scss)
 
 # ----------> DATABASE <----------
 mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
@@ -93,18 +99,18 @@ education_data = [
 
 experiences_data = [
         {
-            "company_name": "Meta & Major League Hacking",
-            "position": "Production Engineering Fellow",
-            "dates": "June 2024 - Present",
+            "company_name": "meta",
+            "position": "production engineering fellow (major league hacking)",
+            "dates": "june 2024 - present",
             "location": "Toronto, ON",
             "description": [
                 "Engineered a dynamic web-based application utilizing Python, Flask, Jinja, MySQL, Nginx, Docker, and unittest.",
                 ]
             },
         {
-            "company_name": "CS Engineering",
-            "position": "Software Engineer",
-            "dates": "Jun 2023 - Jan 2024",
+            "company_name": "cs engineering",
+            "position": "software engineer",
+            "dates": "jun 2023 - jan 2024",
             "location": "Los Angeles, CA",
             "description": [
                 "Developed and maintained React and Redux based public and internal applications.",
@@ -116,9 +122,9 @@ experiences_data = [
                 ]
             },
         {
-            "company_name": "OSLabs",
-            "position": "Software Engineer",
-            "dates": "Mar 2023 - Jun 2023",
+            "company_name": "oslabs",
+            "position": "software engineer",
+            "dates": "mar 2023 - jun 2023",
             "location": "New York, NY",
             "description": [
                 "Developed Trydent, an automated Cypress end-to-end (E2E) test generator that captures and analyzes user interactions from XPATH, streamlining the testing process and enhancing developer productivity by over 60%.",
@@ -141,7 +147,6 @@ locations_data = [
 @app.route('/')
 def about():
     return render_template('about.html', 
-                           title="Samuel Lee", 
                            url=os.getenv("URL"), 
                            user=user_data, 
                            education=education_data, 
@@ -149,11 +154,11 @@ def about():
 
 @app.route('/hobbies')
 def hobbies():
-    return render_template('hobbies.html', title="Hobbies", hobbies=hobbies_data)
+    return render_template('hobbies.html', hobbies=hobbies_data)
 
 @app.route('/locations')
 def map_view():
-    return render_template('map.html', title="Map", locationData=locations_data)
+    return render_template('map.html', locationData=locations_data)
 
 @app.route('/api/timeline_post', methods=['POST'])
 def post_time_line_post():

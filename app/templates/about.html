@@ -1,45 +1,39 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<section class="profile">
-  <div id="profile-picture" class="profile-picture">
-    <img src="{{ url_for('static', filename='assets/prof.jpg') }}" alt="Sam Profile Picture" />
-  </div>
-  <div class="prof-desc">
-    <h2>Hello, I'm Sam, a software engineer living in the Greater Toronto Area.</h2>
-    <p>I am currently pursuing my Masters of Computer Science from the University of Pennsylvania, where I am expected to graduate in 2025. I also graduated from McMaster University's Bachelors of Health Sciences Honours program in 2021.</p>
-    <p>I have a diverse background in software development, with experience spanning across various roles and companies. Currently, I am a Production Engineering Fellow at Meta and Major League Hacking, building and managing dynamic web-based applications and Linux infrastructure. I have also worked as a Software Engineer at CS Engineering, optimizing CI/CD pipelines and internal tooling, and OSLabs, developing Trydent - an E2E test generator.</p>
-    <p> Feel free to reach out and connect with me!</p>
-  </div>
-  </div>
+<section class="container">
+  <h1>hi, it's sam</h1>
+  <p>welcome to my little corner of the internet :)</p>
+
+  <h2>about me</h2>
+  <ul>
+    <li>co-creator of <a href="https://github.com/oslabs-beta/trydent">trydent</a> 🔱, an open source developer tool for automating cypress creation for end-to-end testing.</li>
+    <li>started teaching through private tutoring in 2011, and have been privileged to have been a part the journey of over 100 students.</li>
+    <li>i hold dual-citizenship for canada and south korea - but i've never been to south korea.</li>
+    <li>dog dad to a 1 year old <a href="https://en.wikipedia.org/wiki/Labrador_Retriever">labrador retreiver</a> named agee (a 🦮 g).</li>
+    <li>training for the toronto marathon in october 2024.</li>
+    <li>trying to make gains 💪 b: 245, s: 325, d: 405</li>
+  </ul>
+
+  <!-- ---------- education ---------- -->
+  <h2>my education</h2>
+  <ul>
+    {% for edu in education %}
+    <li>{{ edu.school }} | {{ edu.degree}} | {{ edu.year }}</li>
+    {% endfor %}
+  </ul>
+
+
+  <!-- ---------- experiences ---------- -->
+  <h2>my experiences</h2>
+  <ul>
+    {% for exp in experiences %}
+    <li><span class="highlight">{{ exp.company_name }}</span> | {{ exp.position}} | {{exp.dates}} </li>
+    {% endfor %}
+  </ul>
+
+
 </section>
 
-<h1>Education</h1>
-<div class="edu-container">
-  {% for edu in education %}
-  <div class="edu">
-    <h3>{{ edu.school }}</h3>
-    <span>{{ edu.degree }}</span>  |  
-    <span>{{ edu.year }}</span>
-  </div>
-  {% endfor %}
-</div>
 
-<h1>Experience</h1>
-<div id="experiences">
-  {% for experience in experiences %}
-  <div>
-    <div class="experience-header">
-      <h3>{{ experience.company_name }}  |  <span>{{ experience.position }}</span> </h3>
-      <span>{{ experience.location }}</span>  |  
-      <span>{{ experience.dates }}</span>
-    </div>
-    <!-- <ul class="experience-description"> -->
-    <!--   {% for description_line in experience.description %} -->
-    <!--   <li>{{ description_line }}</li> -->
-    <!--   {% endfor %} -->
-    <!-- </ul> -->
-  </div>
-  {% endfor %}
-</div>
 {% endblock %}

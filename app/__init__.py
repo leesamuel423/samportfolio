@@ -1,10 +1,11 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 from flask_assets import Environment, Bundle
 from dotenv import load_dotenv
 from peewee import *
 from playhouse.shortcuts import model_to_dict
 import datetime
+import re
 
 load_dotenv()
 app = Flask(__name__)
@@ -162,11 +163,19 @@ def map_view():
 
 @app.route('/api/timeline_post', methods=['POST'])
 def post_time_line_post():
-    name = request.form['name']
-    email = request.form['email']
-    content = request.form['content']
-    timeline_post = TimelinePost.create(name=name, email=email, content=content)
+    name = request.form.get('name')
+    email = request.form.get('email')
+    content = request.form.get('content')
 
+    # Input validation
+    if not name or name.strip() == "":
+        return make_response("Invalid name", 400)
+    if not content or content.strip() == "":
+        return make_response("Invalid content", 400)
+    if not email or not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        return make_response("Invalid email", 400)
+
+    timeline_post = TimelinePost.create(name=name, email=email, content=content)
     return model_to_dict(timeline_post)
 
 @app.route('/api/timeline_post', methods=['GET'])

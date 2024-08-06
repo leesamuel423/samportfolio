@@ -3,9 +3,10 @@ on:
   push:
     branches:
       - main
-    pull_request:
-      branches:
-        - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -19,13 +20,16 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.6.8'
-
-      - name: Setup Python Virtual Environment
-        run: python -m venv python3-virtualenv
-
+          python-version: '3.9'
+      
       - name: Install Dependencies
-        run: python3-virtualenv/bin/pip install -r requirements.txt
-
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+      
       - name: Run Tests
-        run: ./run_test.sh
+        run: |
+          source venv/bin/activate
+          chmod +x run_test.sh
+          ./run_test.sh

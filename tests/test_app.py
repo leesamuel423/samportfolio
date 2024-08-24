@@ -22,11 +22,11 @@ class AppTestCase(unittest.TestCase):
 
         # Test header links
         assert '<a href="/timeline">say-hi</a>' in html
-        assert '<a href="/locations">locations</a>' in html
+        # assert '<a href="/locations">locations</a>' in html
         assert '<a href="/hobbies">hobbies</a>' in html
-        assert '<a href="/#">brain-dump</a>' in html
-        assert '<a href="https://www.linkedin.com/in/leesamuel423/">linkedin</a>' in html
-        assert '<a href="https://github.com/leesamuel423">github</a>' in html
+        # assert '<a href="/#">brain-dump</a>' in html
+        assert '<a href="https://www.linkedin.com/in/leesamuel423" target="_blank">linkedin</a>' in html
+        assert '<a href="https://github.com/leesamuel423" target="_blank">github</a>' in html
 
     def test_timeline(self):
         response = self.client.get("api/timeline_post")

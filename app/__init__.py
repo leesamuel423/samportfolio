@@ -92,30 +92,39 @@ hobbies_data = [
 education_data = [
         {
             "school": "university of pennsylvania",
-            "degree": "masters in computer science (mcit)",
+            "degree": "masters in computer science",
             "year": "2024 - 2025"
             },
         {
             "school": "mcmaster university",
-            "degree": "bachelors in health sciences honours",
+            "degree": "bachelors of health sciences honours",
             "year": "2017 - 2021"
             }
         ]
 
 experiences_data = [
         {
+            "company_name": "sports pulse",
+            "position": "full stack software engineer",
+            "dates": "aug 2024 - present",
+            "location": "Toronto, ON",
+            "description": [
+                "",
+                ]
+            },
+        {
             "company_name": "meta",
             "position": "production engineering fellow (major league hacking)",
             "dates": "jun 2024 - present",
             "location": "Toronto, ON",
             "description": [
-                "Engineered a dynamic web-based application utilizing Python, Flask, Jinja, MySQL, Nginx, Docker, and unittest.",
+                "",
                 ]
             },
         {
             "company_name": "cs engineering",
             "position": "software engineer",
-            "dates": "jun 2023 - jan 2024",
+            "dates": "jun 2023 - present",
             "location": "Los Angeles, CA",
             "description": [
                 "Developed and maintained React and Redux based public and internal applications.",

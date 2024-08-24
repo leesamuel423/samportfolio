@@ -7,16 +7,17 @@
 
   <h2>about me</h2>
   <ul>
-    <li>co-creator of <a href="https://github.com/oslabs-beta/trydent">trydent</a> 🔱, an open source developer tool for automating cypress creation for end-to-end testing.</li>
+    <li>co-founder of <a href="https://github.com/oslabs-beta/trydent" target="_blank">trydent</a> 🔱, an open source developer tool for automating cypress code creation for end-to-end testing.</li>
+    <li>dual-citizen of canada and south korea (i've never been to korean though)</li>
+    <li>dog dad to <a href="https://en.wikipedia.org/wiki/Labrador_Retriever" target="_blank">labrador retreiver</a> named agee (a 🦮 g).</li>
+    <li>training for toronto marathon in oct 2024.</li>
+    <li>gains 💪 b: 245, s: 325, d: 405</li>
     <li>mentorship and teaching 🌳</li>
-    <li>dual-citizen of canada and south korea - but i've never been to south korea...</li>
-    <li>dog dad to a 1 year old <a href="https://en.wikipedia.org/wiki/Labrador_Retriever">labrador retreiver</a> named agee (a 🦮 g).</li>
-    <li>training for the toronto marathon in october 2024.</li>
-    <li>trying to make gains 💪 b: 245, s: 325, d: 405</li>
+    <li>"i use vim by the way"</li>
   </ul>
 
   <!-- ---------- education ---------- -->
-  <h2>my education</h2>
+  <h2>education</h2>
   <ul>
     {% for edu in education %}
     <li>{{ edu.school }} | {{ edu.degree}} | {{ edu.year }}</li>
@@ -25,7 +26,7 @@
 
 
   <!-- ---------- experiences ---------- -->
-  <h2>my experiences</h2>
+  <h2>experiences</h2>
   <ul>
     {% for exp in experiences %}
     <li><span class="highlight">{{ exp.company_name }}</span> | {{ exp.position}} | {{exp.dates}} </li>

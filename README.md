@@ -1,43 +1,91 @@
 # Sam Portfolio Site
 
+## Prerequisites
+
+1. Install [Docker](https://docs.docker.com/get-docker/)
+2. Install [Docker Compose](https://docs.docker.com/compose/install/)
+
 ## Installation
 
-1. Make sure you have `python3` and `pip` installed
-
-2. Create and activate virtual environment using virtualenv
-```bash
-$ python -m venv python3-virtualenv
-$ source python3-virtualenv/bin/activate
-```
-
-3. Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all dependencies!
+1. Clone the repository
 
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/yourusername/samportfolio.git
+cd samportfolio
 ```
+
+2. Create a `.env` file in the project root:
+
+```
+DB_HOST=mysql
+DB_USER=your_username
+DB_PASSWORD=your_password
+DB_NAME=your_database_name
+```
+
+3. Build and start the containers:
+
+```bash
+docker compose up -d --build
+```
+
+4. Verify the containers are running:
+
+```bash
+docker ps
+```
+
+You should see containers for both the web application and MySQL running.
 
 ## Usage
 
-1. Create a `.env` file using the example.env template (make a copy using the variables inside of the template)
+Once the containers are running, you can access:
 
-Start flask development server
+- The website at `http://localhost:5001`
+- The database at `localhost:3306` (if you need to connect externally)
+
+### Viewing Logs
+
+To see application logs:
+
 ```bash
-$ export FLASK_ENV=development
-$ flask run
+docker compose logs app
 ```
 
-You should get a response like this in the terminal:
-```
-❯ flask run
- * Environment: development
- * Debug mode: on
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+To see database logs:
+
+```bash
+docker compose logs mysql
 ```
 
-2. You'll now be able to access the website at `localhost:5000` or `127.0.0.1:5000` in the browser! 
+### Troubleshooting
 
-## Contributing
+If you encounter issues:
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+1. Check container status:
 
-Please make sure to update tests as appropriate.
+```bash
+docker ps
+docker compose ps
+```
+
+2. Check logs for errors:
+
+```bash
+docker compose logs
+```
+
+3. Restart the services:
+
+```bash
+docker compose down
+docker compose up -d --build
+```
+
+## Production Deployment
+
+For production deployment:
+
+```bash
+./redeploy-site.sh
+```

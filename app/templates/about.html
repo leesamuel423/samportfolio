@@ -7,33 +7,41 @@
 
   <h2>about me</h2>
   <ul>
-    <li>co-founder of <a href="https://github.com/oslabs-beta/trydent" target="_blank">trydent</a> 🔱, an open source developer tool for automating cypress code creation for end-to-end testing.</li>
-    <li>dual-citizen of canada and south korea (i've never been to korean though)</li>
-    <li>dog dad to <a href="https://en.wikipedia.org/wiki/Labrador_Retriever" target="_blank">labrador retreiver</a> named agee (a 🦮 g).</li>
-    <li>training for toronto marathon in oct 2024.</li>
-    <li>gains 💪 b: 245, s: 325, d: 405</li>
-    <li>mentorship and teaching 🌳</li>
-    <li>"i use vim by the way"</li>
-  </ul>
-
-  <!-- ---------- education ---------- -->
-  <h2>education</h2>
-  <ul>
-    {% for edu in education %}
-    <li>{{ edu.school }} | {{ edu.degree}} | {{ edu.year }}</li>
-    {% endfor %}
+    <li>co-founder of <a href="https://github.com/oslabs-beta/trydent" target="_blank">trydent</a> → automating
+      cypress
+      code for end-to-end testing</li>
+    <li>working on <a href="https://launch.alkiprep.com/" target="_blank">alki</a> → transforming algorithm learning
+      with spaced repetition</li>
+    <li>learning go</li>
+    <li>send me your favorite vim shortcut</li>
+    <li>lifting b: 245, s: 325, d: 405</li>
+    <li>run forrest run!</li>
   </ul>
 
 
   <!-- ---------- experiences ---------- -->
   <h2>experiences</h2>
-  <ul>
+  <ul class="aligned-list">
     {% for exp in experiences %}
-    <li><span class="highlight">{{ exp.company_name }}</span> | {{ exp.position}} | {{exp.dates}} </li>
+    <li>
+      <span class="institution highlight">{{ exp.company_name }}</span>
+      <span class="detail">{{ exp.position}}</span>
+      <span class="year">{{exp.dates}}</span>
+    </li>
     {% endfor %}
   </ul>
 
-
+  <!-- ---------- education ---------- -->
+  <h2>education</h2>
+  <ul class="aligned-list">
+    {% for edu in education %}
+    <li>
+      <span class="institution">{{ edu.school }}</span>
+      <span class="detail">{{ edu.degree}}</span>
+      <span class="year">{{ edu.year }}</span>
+    </li>
+    {% endfor %}
+  </ul>
 </section>
 
 

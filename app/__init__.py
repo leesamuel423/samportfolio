@@ -104,18 +104,27 @@ education_data = [
 
 experiences_data = [
         {
-            "company_name": "sports pulse",
+            "company_name": "starbourne labs",
             "position": "full stack software engineer",
             "dates": "aug 2024 - present",
             "location": "Toronto, ON",
             "description": [
                 "",
                 ]
-            },
+        },
+        {
+            "company_name": "alki",
+            "position": "founder | software engineer",
+            "dates": "jul 2024 - present",
+            "location": "Toronto, ON",
+            "description": [
+                "",
+                ]
+        },
         {
             "company_name": "meta",
-            "position": "production engineering fellow (major league hacking)",
-            "dates": "jun 2024 - present",
+            "position": "production engineering fellow",
+            "dates": "jun 2024 - sep 2024",
             "location": "Toronto, ON",
             "description": [
                 "",
@@ -123,8 +132,8 @@ experiences_data = [
             },
         {
             "company_name": "cs engineering",
-            "position": "software engineer",
-            "dates": "jun 2023 - present",
+            "position": "full stack software engineer",
+            "dates": "jun 2023 - aug 2024",
             "location": "Los Angeles, CA",
             "description": [
                 "Developed and maintained React and Redux based public and internal applications.",

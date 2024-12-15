@@ -115,7 +115,7 @@ experiences_data = [
         {
             "company_name": "alki",
             "position": "founder | software engineer",
-            "dates": "jul 2024 - present",
+            "dates": "jul 2023 - present",
             "location": "Toronto, ON",
             "description": [
                 "",

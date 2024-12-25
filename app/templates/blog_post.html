@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<article class="blog-post">
+  <div class="blog-post-container">
+    <header class="post-header">
+      <p class="post-date">{{ post.date }}</p>
+      <h1 class="post-title">{{ post.title }}</h1>
+    </header>
+
+    <div class="post-content">
+      {{ post.content | replace('{{ assets_path }}', post.assets_path) | safe }}
+    </div>
+  </div>
+</article>
+{% endblock %}

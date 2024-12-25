@@ -1,48 +1,91 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<section class="container">
-  <h1>hi, it's sam</h1>
-  <p>welcome to my little corner of the internet :)</p>
+<div class="split-layout">
+  <!-- Left Column -->
+  <section class="main-content">
 
-  <h2>about me</h2>
-  <ul>
-    <li>co-founder of <a href="https://github.com/oslabs-beta/trydent" target="_blank">trydent</a> → automating
-      cypress
-      code for end-to-end testing</li>
-    <li>working on <a href="https://launch.alkiprep.com/" target="_blank">alki</a> → transforming algorithm learning
-      with spaced repetition</li>
-    <li>learning go</li>
-    <li>send me your favorite vim shortcut</li>
-    <li>lifting b: 245, s: 325, d: 405</li>
-    <li>run forrest run!</li>
-  </ul>
+    <h2>hi, it's sam</h2>
 
+    <div class="content-section">
+      <h3 class="section-heading">experience</h3>
+      <ul class="experience-list">
+        {% for exp in experiences %}
+        <li>
+          <div class="experience-header">
+            <span class="company">{{ exp.company_name }}</span>
+            <span class="dates">{{ exp.dates }}</span>
+          </div>
+          <div class="position">{{ exp.position }}</div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
 
-  <!-- ---------- experiences ---------- -->
-  <h2>experiences</h2>
-  <ul class="aligned-list">
-    {% for exp in experiences %}
-    <li>
-      <span class="institution highlight">{{ exp.company_name }}</span>
-      <span class="detail">{{ exp.position}}</span>
-      <span class="year">{{exp.dates}}</span>
-    </li>
-    {% endfor %}
-  </ul>
+    <div class="content-section">
+      <h3 class="section-heading">education</h3>
+      <ul class="education-list">
+        {% for edu in education %}
+        <li>
+          <div class="education-header">
+            <span class="school">{{ edu.school }}</span>
+            <span class="year">{{ edu.year }}</span>
+          </div>
+          <div class="degree">{{ edu.degree }}</div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="content-section">
+      <h3 class="section-heading">projects</h3>
+      <ul class="clean-list">
+        <li>
+          <a href="https://github.com/oslabs-beta/trydent" target="_blank" class="project-link">
+            <span class="project-name">trydent |</span>
+            <span class="project-desc">automating cypress e2e testing (co-founder)</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.alkiprep.com/" target="_blank" class="project-link">
+            <span class="project-name">alki |</span>
+            <span class="project-desc">algorithm learning × spaced repetition</span>
+          </a>
+        </li>
+      </ul>
+    </div>
 
-  <!-- ---------- education ---------- -->
-  <h2>education</h2>
-  <ul class="aligned-list">
-    {% for edu in education %}
-    <li>
-      <span class="institution">{{ edu.school }}</span>
-      <span class="detail">{{ edu.degree}}</span>
-      <span class="year">{{ edu.year }}</span>
-    </li>
-    {% endfor %}
-  </ul>
-</section>
+    <div class="content-section">
+      <h3 class="section-heading">learning</h3>
+      <ul class="clean-list">
+        <li>golang</li>
+        <li>send me your favorite vim shortcuts!</li>
+      </ul>
+    </div>
 
+    <div class="content-section">
+      <h3 class="section-heading">hobbies</h3>
+      <ul class="clean-list">
+        <li class="metrics">b: 245 | s: 325 | d: 405</li>
+        <li>running enthusiast</li>
+        <li>currently reading: 11/22/63 by stephen king</li>
+      </ul>
+    </div>
 
+  </section>
+
+  <!-- Right Column -->
+  <section class="blog-section">
+    <h2 class="blog-heading">writing</h2>
+    <ul class="blog-list">
+      <li>
+        <a href="{{ url_for('blog_post', slug='practicing-safe-tests') }}" class="blog-link">
+          <span class="blog-date">2023-03-17</span>
+          <span class="blog-title">practicing safe tests</span>
+          <span class="blog-preview">automating e2e testing with trydent...</span>
+        </a>
+      </li>
+
+    </ul>
+  </section>
+</div>
 {% endblock %}

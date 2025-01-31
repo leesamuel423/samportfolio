@@ -173,8 +173,6 @@ header {
     color: #e83e8c; }
 
 @media (max-width: 768px) {
-  .header-container {
-    padding: 1rem; }
   .blog-post-container {
     padding: 1rem; }
   .split-layout {
@@ -226,3 +224,29 @@ header {
   .education-list .degree {
     font-size: 0.95rem;
     color: #666; }
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem; }
+
+.profile-image {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 30%; }
+
+.profile-info h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  margin-bottom: 0.5rem;
+  color: #333; }
+
+.profile-info .social-links {
+  margin: 0; }
+  .profile-info .social-links a {
+    color: #5e83d1;
+    margin-right: 1rem; }
+    .profile-info .social-links a:hover {
+      text-decoration: underline; }

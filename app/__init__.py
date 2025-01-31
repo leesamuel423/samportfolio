@@ -1,13 +1,14 @@
-import os
-from flask import Flask, render_template, request, make_response, abort
-from flask_assets import Environment, Bundle
-from dotenv import load_dotenv
-from peewee import *
-from playhouse.shortcuts import model_to_dict
 import datetime
+import os
 import re
+
 import frontmatter
 import markdown
+from dotenv import load_dotenv
+from flask import Flask, abort, make_response, render_template, request
+from flask_assets import Bundle, Environment
+from peewee import *
+from playhouse.shortcuts import model_to_dict
 
 load_dotenv()
 app = Flask(__name__, static_url_path="/static", static_folder="static")
@@ -60,6 +61,11 @@ education_data = [
 
 experiences_data = [
     {
+        "company_name": "google",
+        "position": "software engineer intern",
+        "dates": "incoming summer 2025",
+    },
+    {
         "company_name": "starbourne labs",
         "position": "full stack software engineer",
         "dates": "aug 2024 - present",
@@ -70,14 +76,14 @@ experiences_data = [
         "dates": "jul 2023 - present",
     },
     {
+        "company_name": "cs engineering",
+        "position": "full stack software engineer",
+        "dates": "jun 2023 - feb 2025",
+    },
+    {
         "company_name": "meta",
         "position": "production engineering fellow",
         "dates": "jun 2024 - sep 2024",
-    },
-    {
-        "company_name": "cs engineering",
-        "position": "full stack software engineer",
-        "dates": "jun 2023 - aug 2024",
     },
     {
         "company_name": "oslabs",
@@ -110,16 +116,24 @@ def get_blog_posts():
                             # Convert the content from markdown to HTML
                             html_content = markdown.markdown(
                                 post.content,
-                                extensions=["fenced_code", "tables", "codehilite"],
+                                extensions=[
+                                    "fenced_code",
+                                    "tables",
+                                    "codehilite",
+                                ],
                             )
 
                             # Use directory name as slug
                             posts.append(
                                 {
                                     "slug": dirname,
-                                    "title": post.metadata.get("title", "Untitled"),
+                                    "title": post.metadata.get(
+                                        "title", "Untitled"
+                                    ),
                                     "date": post.metadata.get("date"),
-                                    "description": post.metadata.get("description", ""),
+                                    "description": post.metadata.get(
+                                        "description", ""
+                                    ),
                                     "content": html_content,
                                     "assets_path": f"/static/blogs/{dirname}/assets",
                                 }

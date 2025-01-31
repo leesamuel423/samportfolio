@@ -27,11 +27,16 @@
   <body>
     <div class="header-container">
       <header>
-        <div class="logo"><a href="/">samuel lee</a></div>
-        <ul>
-          <li><a href="https://www.linkedin.com/in/leesamuel423" target="_blank">linkedin</a></li>
-          <li><a href="https://github.com/leesamuel423" target="_blank">github</a></li>
-        </ul>
+        <div class="profile-header">
+          <img src="{{ url_for('static', filename='assets/profile.jpg') }}" alt="Samuel Lee" class="profile-image">
+          <div class="profile-info">
+            <h1>samuel lee</h1>
+            <div class="social-links">
+              <a href="{{ user.linkedin }}" target="_blank">linkedin</a>
+              <a href="{{ user.github }}" target="_blank">github</a>
+            </div>
+          </div>
+        </div>
       </header>
     </div>
 

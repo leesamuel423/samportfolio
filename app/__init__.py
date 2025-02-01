@@ -50,7 +50,7 @@ education_data = [
     {
         "school": "university of pennsylvania",
         "degree": "masters in computer science",
-        "year": "2024 - 2025",
+        "year": "2024 - 2026",
     },
     {
         "school": "mcmaster university",
@@ -95,60 +95,6 @@ experiences_data = [
 # ----------> ROUTES <----------
 
 
-def get_blog_posts():
-    """Read all blog posts from the blogs directory."""
-    posts = []
-    blog_dir = os.path.join(os.path.dirname(__file__), "blogs")
-
-    try:
-        # Look for directories in the blogs folder
-        for dirname in os.listdir(blog_dir):
-            dir_path = os.path.join(blog_dir, dirname)
-            if os.path.isdir(dir_path):
-                # Look for index.md in each directory
-                index_path = os.path.join(dir_path, "index.md")
-                if os.path.exists(index_path):
-                    try:
-                        with open(index_path, "r", encoding="utf-8") as file:
-                            # Parse front matter and content
-                            post = frontmatter.load(file)
-
-                            # Convert the content from markdown to HTML
-                            html_content = markdown.markdown(
-                                post.content,
-                                extensions=[
-                                    "fenced_code",
-                                    "tables",
-                                    "codehilite",
-                                ],
-                            )
-
-                            # Use directory name as slug
-                            posts.append(
-                                {
-                                    "slug": dirname,
-                                    "title": post.metadata.get(
-                                        "title", "Untitled"
-                                    ),
-                                    "date": post.metadata.get("date"),
-                                    "description": post.metadata.get(
-                                        "description", ""
-                                    ),
-                                    "content": html_content,
-                                    "assets_path": f"/static/blogs/{dirname}/assets",
-                                }
-                            )
-                    except Exception as e:
-                        print(f"Error processing {dirname}: {str(e)}")
-                        continue
-    except Exception as e:
-        print(f"Error reading blog directory: {str(e)}")
-        return []
-
-    # Sort posts by date, newest first
-    return sorted(posts, key=lambda x: x["date"], reverse=True)
-
-
 @app.route("/")
 def about():
     return render_template(
@@ -157,32 +103,6 @@ def about():
         user=user_data,
         education=education_data,
         experiences=experiences_data,
-        blog_posts=get_blog_posts(),
-    )
-
-
-@app.route("/blog/<slug>")
-def blog_post(slug):
-    blog_dir = os.path.join(os.path.dirname(__file__), "blogs")
-    post_path = os.path.join(blog_dir, slug, "index.md")
-
-    if not os.path.exists(post_path):
-        abort(404)
-
-    with open(post_path, "r", encoding="utf-8") as file:
-        post = frontmatter.load(file)
-        html_content = markdown.markdown(
-            post.content, extensions=["fenced_code", "tables", "codehilite"]
-        )
-
-    return render_template(
-        "blog_post.html",
-        post={
-            "title": post.metadata.get("title"),
-            "date": post.metadata.get("date"),
-            "content": html_content,
-            "assets_path": f"/static/blogs/{slug}/assets",
-        },
     )
 
 

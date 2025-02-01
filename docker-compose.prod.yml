@@ -30,7 +30,7 @@ services:
     restart: always
     environment:
       - CERTBOT_EMAIL=leesamuel423@gmail.com
-      - DOMAINS=leesamuel423.com www.leesamuel423.com
+      - DOMAINS=leesamuel423.com, www.leesamuel423.com
     ports:
       - 80:80
       - 443:443

@@ -50,7 +50,7 @@ education_data = [
     {
         "school": "university of pennsylvania",
         "degree": "masters in computer science",
-        "year": "2024 - 2026",
+        "year": "2024 - present",
     },
     {
         "school": "mcmaster university",
@@ -77,8 +77,8 @@ experiences_data = [
     },
     {
         "company_name": "cs engineering",
-        "position": "full stack software engineer",
-        "dates": "jun 2023 - feb 2025",
+        "position": "software engineer",
+        "dates": "jun 2023 - present",
     },
     {
         "company_name": "meta",
